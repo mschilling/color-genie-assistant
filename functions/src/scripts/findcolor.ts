@@ -1,7 +1,7 @@
 require('dotenv/config');
 
 import * as admin from 'firebase-admin';
-import { Api } from '../api';
+import { Api } from '../services/api';
 
 const serviceAccount = require('../../creds.json');
 admin.initializeApp({
