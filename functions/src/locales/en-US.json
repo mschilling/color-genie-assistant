@@ -1,3 +1,8 @@
 {
-  "WELCOME_MESSAGE": "Hi"
+  "welcome_message": "Hi, what can I do for you?",
+  "welcome_message_ssml": "<speak>Welcome to move for mobile. <break time=\"300ms\"/>How can I help?</speak>",
+  "welcome_back_message": "Hi, welcome back.",
+  "welcome_back_message_ssml": "<speak>Welkom terug. <break time=\"300ms\"/>How can I help?</speak>",
+
+  "label_help": "Help"
 }

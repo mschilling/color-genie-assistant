@@ -1,22 +1,21 @@
+import * as i18n from 'i18n';
 import { Suggestions, SimpleResponse } from 'actions-on-google';
 
 export function welcome(conv) {
   if (!conv.user.last.seen) {
     conv.ask(
       new SimpleResponse({
-        text: "Hi, I'm here to help",
-        speech: "Hi, I'm here to help",
+        text: i18n.__('welcome_message'),
+        speech: i18n.__('welcome_message_ssml'),
       })
     );
   } else {
     conv.ask(
       new SimpleResponse({
-        text: "Hi, welcome back. How can I help?",
-        speech: "Hi, welcome back. How can I help?",
+        text: i18n.__('welcome_back_message'),
+        speech: i18n.__('welcome_back_message_ssml'),
       })
     );
   }
-  conv.ask(
-    new Suggestions('Help')
-  );
+  conv.ask(new Suggestions('Help'));
 }
