@@ -4,6 +4,7 @@ import { blendColors } from './prompts/blend-colors';
 
 import nlData from './locales/nl-NL.json'; // include languages
 import enData from './locales/en-US.json'; // include languages
+import { welcome } from './prompts/welcome';
 
 const moment = require('moment');
 
@@ -42,7 +43,7 @@ app.middleware(conv => {
   }
 });
 
-// app.intent('Default Welcome Intent', welcome);
+app.intent('Default Welcome Intent', welcome);
 app.intent('blend_colors', blendColors);
 
 export { app };
