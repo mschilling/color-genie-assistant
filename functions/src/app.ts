@@ -2,15 +2,15 @@ import * as i18n from 'i18n';
 import { dialogflow } from 'actions-on-google';
 import { blendColors } from './prompts/blend-colors';
 
-// import nlData from './locales/nl-NL.json'; // include languages
-// import enData from './locales/en-US.json'; // include languages
+import nlData from './locales/nl-NL.json'; // include languages
+import enData from './locales/en-US.json'; // include languages
 
 const moment = require('moment');
 
 i18n.configure({
   locales: ['en-US', 'nl-NL'],
   directory: __dirname + '/locales',
-  defaultLocale: 'en-US',
+  defaultLocale: 'nl-NL',
 });
 
 const app = dialogflow({
@@ -32,9 +32,14 @@ const app = dialogflow({
 });
 
 app.middleware(conv => {
-  const userLocale = conv.user ? 'conv.user.locale' : 'en-US';
-  i18n.setLocale(userLocale);
-  moment.locale(userLocale);
+  if (conv.user) {
+    i18n.setLocale(conv.user);
+    moment.locale(conv.user);
+  } else {
+    console.log(
+      "conv.user is null, so don't init i18n and moment with default locale"
+    );
+  }
 });
 
 // app.intent('Default Welcome Intent', welcome);
