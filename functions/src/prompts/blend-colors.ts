@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { Api } from '../api';
+import { Api } from '../services/api';
 
 import { ColorBlender } from '../helpers/color-blender'
 import { SimpleResponse } from 'actions-on-google';

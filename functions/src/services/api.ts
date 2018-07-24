@@ -1,7 +1,3 @@
-// require('dotenv/config');
-
-import * as admin from 'firebase-admin';
-
 export class Api {
   db: FirebaseFirestore.Firestore;
 
