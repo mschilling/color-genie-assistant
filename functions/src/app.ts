@@ -34,8 +34,8 @@ const app = dialogflow({
 
 app.middleware(conv => {
   if (conv.user) {
-    i18n.setLocale(conv.user);
-    moment.locale(conv.user);
+    i18n.setLocale(conv.user.locale);
+    moment.locale(conv.user.locale);
   } else {
     console.log(
       "conv.user is null, so don't init i18n and moment with default locale"
