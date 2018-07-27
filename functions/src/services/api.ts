@@ -12,4 +12,15 @@ export class Api {
     }
     return null;
   }
+
+  async getColorByName(name): Promise<any> {
+    const snapshot = await this.db.collection('colors')
+      .where('name', '==', name).get();
+
+      if(snapshot.docs.length === 0) {
+        return null;
+      }
+      return snapshot.docs[0].data();
+  }
+
 }

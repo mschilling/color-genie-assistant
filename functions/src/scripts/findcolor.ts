@@ -22,5 +22,8 @@ async function run(): Promise<boolean> {
   const color = await api.getColor('#ff0000');
   console.log(color);
 
+  const color2 = await api.getColorByName('magenta');
+  console.log(color2);
+
   return true;
 }

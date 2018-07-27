@@ -19,17 +19,18 @@ export async function blendColors(conv, params) {
 
   const calcColor3: any = ColorBlender.blendColors(param1, param2, 0.5);
   console.log('Calculated color: ', calcColor3);
-  const namedColor = colors(calcColor3);
-  console.log('Named color: ' + namedColor);
+  const namedColorEn = colors(calcColor3);
+  const namedColor = await api.getColorByName(namedColorEn);
+  console.log('Named color: ' + namedColorEn, namedColor);
 
   const color3 = await api.getColor(calcColor3);
   console.log('color3:', color3);
 
-  if (namedColor) {
-    conv.ask(
+  if (namedColor || namedColorEn) {
+    conv.close(
       new SimpleResponse({
-        text: `Wanneer je deze kleuren mengt, krijg je ${namedColor}`,
-        speech: `Wanneer je deze kleuren mengt krijg je ${namedColor}`,
+        text: `Wanneer je deze kleuren mengt, krijg je ${ (namedColor || {}).name_nl || namedColorEn}`,
+        speech: `Wanneer je deze kleuren mengt krijg je ${(namedColor || {}).name_nl || namedColorEn}`,
       })
     );
     return;
@@ -37,7 +38,7 @@ export async function blendColors(conv, params) {
 
   if (!color3) {
     //fallback
-    conv.ask('Ik heb helaas niks gevonden');
+    conv.ask('Ik heb helaas niks gevonden. Probeer het nog een keer.');
     return;
   }
 
@@ -46,5 +47,5 @@ export async function blendColors(conv, params) {
     speech: `Wanneer je deze kleuren mengt krijg je ${color3.name_nl}`,
   };
 
-  conv.ask(new SimpleResponse(responseText));
+  conv.close(new SimpleResponse(responseText));
 }
